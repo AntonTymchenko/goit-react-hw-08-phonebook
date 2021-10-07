@@ -28,7 +28,7 @@ const Navigation = () => {
           style={styles.link}
           activeStyle={styles.activeLink}
         >
-          Главная
+          Home
         </NavLink>
       ) : (
         <NavLink

@@ -1,17 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from "../../redux/auth-operation";
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: "flex",
-    flexDirection: "column",
-    marginBottom: 15,
-  },
-};
+import s from "./LoginView.module.css";
 
 export default function LoginView() {
   const dispatch = useDispatch();
@@ -41,32 +31,36 @@ export default function LoginView() {
   };
 
   return (
-    <div>
-      <h1>Login page</h1>
+    <div className={s.main}>
+      <div className={s.ribbon}></div>
+      <div className={s.login}>
+        <h1 className={s.title}>Login page</h1>
 
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Почта
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
+        <form onSubmit={handleSubmit} action="login" autoComplete="off">
+          <div className={s.input}>
+            <div className={s.blockinput}>
+              <input
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleChange}
+                placeholder="Email"
+              />
+            </div>
 
-        <label style={styles.label}>
-          Пароль
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-
-        <button type="submit">Войти</button>
-      </form>
+            <div className={s.blockinput}>
+              <input
+                type="password"
+                name="password"
+                value={password}
+                onChange={handleChange}
+                placeholder="Password"
+              />
+            </div>
+          </div>
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </div>
   );
 }

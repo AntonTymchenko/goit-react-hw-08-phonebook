@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import authOperations from "../../redux/auth-operation";
-import "./RegisterView.css";
+import s from "./RegisterView.module.css";
 
 export default function RegisterView() {
   const dispatch = useDispatch();
@@ -28,51 +28,50 @@ export default function RegisterView() {
       alert("Please enter name, email or password");
       return;
     }
-
     dispatch(authOperations.register({ name, email, password }));
-
     setName("");
     setEmail("");
     setPassword("");
   };
 
   return (
-    <div>
-      <h1>Страница регистрации</h1>
+    <div className={s.main}>
+      <h1 className={s.title}>Register page</h1>
 
-      <form onSubmit={handleSubmit} className="form-reg" autoComplete="off">
-        <label className="label-reg">
-          Имя
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-          />
-        </label>
+      <form onSubmit={handleSubmit} className={s.login} autoComplete="off">
+        <div className={s.input}>
+          <div className={s.blockinput}>
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={handleChange}
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+              placeholder="Name"
+            />
+          </div>
 
-        <label className="label-reg">
-          Почта
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
+          <div className={s.blockinput}>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="Email"
+            />
+          </div>
 
-        <label className="label-reg">
-          Пароль
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-
+          <div className={s.blockinput}>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="Password"
+            />
+          </div>
+        </div>
         <button type="submit">Зарегистрироваться</button>
       </form>
     </div>
